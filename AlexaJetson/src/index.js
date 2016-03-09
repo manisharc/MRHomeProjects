@@ -3,7 +3,7 @@ var AlexaSkill = require('./AlexaSkill');
 
 var handleSwitchRequest = function(intent, session, response, callback){
   //var status = Number(intent.slots.state.value);
-  var status = intent.slots.state.value
+  var status = intent.slots.state.value;
   var net = require('net');
   var fs = require('fs');
   var HOST = fs.readFileSync('host.txt').toString("utf-8",0,12);
