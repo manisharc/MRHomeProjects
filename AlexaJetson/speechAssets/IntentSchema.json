@@ -1,0 +1,17 @@
+{
+  "intents": [
+    {
+      "intent": "SwitchLightIntent",
+      "slots": [
+        {
+          "name": "state",
+          "type": "CUSTOM_STATUS"
+        }
+      ]
+    },
+    {
+      "intent": "HelpIntent",
+      "slots": []
+    }
+  ]
+}
