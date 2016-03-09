@@ -2,7 +2,7 @@ var APP_ID = 'amzn1.echo-sdk-ams.app.b2201586-9f97-45b8-a753-83aa156eeb99';
 var AlexaSkill = require('./AlexaSkill');
 
 var handleSwitchRequest = function(intent, session, response, callback){
-  //var status = Number(intent.slots.state.value);
+  ////var status = Number(intent.slots.state.value);
   var status = intent.slots.state.value;
   var net = require('net');
   var fs = require('fs');
