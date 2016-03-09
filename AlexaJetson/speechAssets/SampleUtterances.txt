@@ -1,11 +1,11 @@
-SwitchLightIntent switch light {one|state}
-SwitchLightIntent switch light {zero|state}
-SwitchLightIntent switch {one|state} light
-SwitchLightIntent switch {zero|state} light
-SwitchLightIntent turn light {one|state}
-SwitchLightIntent turn light {zero|state}
-SwitchLightIntent turn {one|state} light
-SwitchLightIntent turn {zero|state} light
+SwitchLightIntent switch light {state}
+SwitchLightIntent switch light {state}
+SwitchLightIntent switch {state} light
+SwitchLightIntent switch {state} light
+SwitchLightIntent turn light {state}
+SwitchLightIntent turn light {state}
+SwitchLightIntent turn {state} light
+SwitchLightIntent turn {state} light
 HelpIntent help me
 HelpIntent what can I ask you
 HelpIntent get help

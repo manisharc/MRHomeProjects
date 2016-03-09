@@ -5,7 +5,7 @@
       "slots": [
         {
           "name": "state",
-          "type": "CUSTOM_STATUS"
+          "type": "BOOL_STATE"
         }
       ]
     },
