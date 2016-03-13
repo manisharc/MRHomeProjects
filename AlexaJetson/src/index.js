@@ -2,21 +2,26 @@ var APP_ID = 'amzn1.echo-sdk-ams.app.b2201586-9f97-45b8-a753-83aa156eeb99';
 var AlexaSkill = require('./AlexaSkill');
 
 var handleSwitchRequest = function(intent, session, response, callback){
-  ////var status = Number(intent.slots.state.value);
-  var status = intent.slots.state.value;
+  var status = intent.slots.state;
+  var statusName;
+  
+  if (status && status.value){
+      statusName = status.value.toUpperCase();
+  }
+
   var net = require('net');
   var fs = require('fs');
-  var HOST = fs.readFileSync('host.txt').toString("utf-8",0,12);
+  var HOST = fs.readFileSync('host.txt').toString("utf-8",0,13);
   var PORT = fs.readFileSync('port.txt').toString("utf-8",0,4);
 
   var client = new net.Socket();
   client.connect(PORT, HOST, function() {
       console.log('CONNECTED TO: ' + HOST + ':' + PORT);
-      if(status == ON) {
+      if(statusName == 'ON') {
            console.log('sending status one to jetson');
            client.write('1');
       }
-      else if(status == OFF) {
+      else if(statusName == 'OFF') {
            console.log('sending status zero to jetson');
            client.write('0');
       }
@@ -30,7 +35,7 @@ var handleSwitchRequest = function(intent, session, response, callback){
   client.on('data', function(data) {
       console.log('DATA: ' + data);
       client.destroy();
-      callback();
+      callback(statusName);
   });
 
   client.on('close', function() {
@@ -59,8 +64,8 @@ Jetson.prototype.intentHandlers = {
     handleSwitchRequest(intent, 
                         session, 
                         response, 
-                        function callback(){
-                            var text = 'You asked to switch the light' + intent.slots.state.value;
+                        function callback(statusName){
+                            var text = 'You asked to switch the light ' + statusName; //intent.slots.state.value;
                             var cardText = text;
                             var heading = 'Welcome to R and Ms smart home';
                             response.tellWithCard(text, heading, cardText);
